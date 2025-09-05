@@ -1,1 +1,1 @@
-# figuring the strcuture.
+# figuring the structure.
