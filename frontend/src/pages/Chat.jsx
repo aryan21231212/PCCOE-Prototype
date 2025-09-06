@@ -1,9 +1,13 @@
-import React from 'react'
+import Navbar from "../components/Navbar";
+import ChatBox from "../components/ChatBox";
 
-const Chat = () => {
+export default function Chat() {
   return (
-    <div>Chat</div>
-  )
-}
+    <>
 
-export default Chat
+      <div className="p-8">
+        <ChatBox />
+      </div>
+    </>
+  );
+}

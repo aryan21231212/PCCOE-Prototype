@@ -1,9 +1,13 @@
-import React from 'react'
+import Navbar from "../components/Navbar";
+import ImpactChart from "../components/ImpactChart";
 
-const Analytics = () => {
+export default function Analytics() {
   return (
-    <div>Analytics</div>
-  )
-}
+    <>
 
-export default Analytics
+      <div className="p-8">
+        <ImpactChart />
+      </div>
+    </>
+  );
+}
