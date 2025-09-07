@@ -1,30 +1,28 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
-export default function ChatBox() {
-  const [messages, setMessages] = useState(["Welcome to WasteChain chat!"]);
+export default function ChatBox({ initial = ["Welcome to WasteChain chat!"] }) {
+  const [messages, setMessages] = useState(initial);
   const [input, setInput] = useState("");
+  const ref = useRef();
 
-  const sendMessage = () => {
+  useEffect(() => {
+    if (ref.current) ref.current.scrollTop = ref.current.scrollHeight;
+  }, [messages]);
+
+  const send = () => {
     if (!input) return;
-    setMessages([...messages, input]);
+    setMessages(m => [...m, `You: ${input}`]);
     setInput("");
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow flex flex-col h-96">
-      <div className="flex-1 overflow-y-auto border p-2 mb-2">
-        {messages.map((msg, idx) => (
-          <p key={idx} className="p-1">{msg}</p>
-        ))}
+    <div className="bg-white/5 p-4 rounded-lg flex flex-col h-96">
+      <div ref={ref} className="flex-1 overflow-y-auto mb-3 space-y-2">
+        {messages.map((m,i) => <div key={i} className="text-sm text-gray-200 p-2 bg-white/2 rounded">{m}</div>)}
       </div>
       <div className="flex gap-2">
-        <input 
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="border p-2 rounded flex-1"
-          placeholder="Type a message..."
-        />
-        <button onClick={sendMessage} className="bg-green-600 text-white px-4 rounded hover:bg-green-700">Send</button>
+        <input value={input} onChange={(e)=>setInput(e.target.value)} className="flex-1 p-2 rounded bg-transparent border border-white/10" placeholder="Type a message..." />
+        <button onClick={send} className="bg-green-500 px-4 py-2 rounded">Send</button>
       </div>
     </div>
   );

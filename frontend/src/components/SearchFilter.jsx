@@ -1,10 +1,17 @@
-export default function SearchFilter() {
+export default function SearchFilter({ onSearch }) {
+  const submit = (e) => {
+    e.preventDefault();
+    const form = Object.fromEntries(new FormData(e.target));
+    if (onSearch) onSearch(form);
+  };
+
   return (
-    <div className="bg-white shadow p-4 rounded-lg flex gap-4">
-      <input type="text" placeholder="Material type" className="border p-2 rounded w-1/3"/>
-      <input type="number" placeholder="Min Qty (kg)" className="border p-2 rounded w-1/3"/>
-      <input type="number" placeholder="Max Qty (kg)" className="border p-2 rounded w-1/3"/>
-      <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Search</button>
-    </div>
+    <form onSubmit={submit} className="bg-white/5 p-4 rounded-lg flex gap-3 items-center">
+      <input name="material" placeholder="Material type" className="p-2 rounded bg-transparent border border-white/10 flex-1" />
+      <input name="minQty" placeholder="Min Qty" type="number" className="p-2 rounded bg-transparent border border-white/10 w-28" />
+      <input name="maxQty" placeholder="Max Qty" type="number" className="p-2 rounded bg-transparent border border-white/10 w-28" />
+      <input name="location" placeholder="Location" className="p-2 rounded bg-transparent border border-white/10 w-44" />
+      <button className="bg-green-500 px-4 py-2 rounded">Search</button>
+    </form>
   );
 }
