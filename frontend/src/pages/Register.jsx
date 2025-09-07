@@ -1,14 +1,30 @@
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
-  const submit = (e) => {
+  const [form, setForm] = useState({});
+  const { login } = useContext(AuthContext);
+  const nav = useNavigate();
+
+  const submit = async (e) => {
     e.preventDefault();
-    alert("Mock register — integrate auth API");
+    try {
+      await axios.post("/api/auth/register", form);
+      const res = await axios.post("/api/auth/login", form);
+      login(res.data);
+      nav("/seller");
+    } catch (err) {
+      alert(err.response?.data.error || "Registration failed.");
+    }
   };
 
   return (
     <div className="bg-[#0b1220] min-h-screen flex items-center justify-center px-6 py-12 text-gray-100">
       <form
+        onChange={(e)=>setForm({ ...form, [e.target.name]: e.target.value })}  
         onSubmit={submit}
         className="w-full max-w-md bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-8 rounded-2xl border border-white/10 shadow-lg space-y-5"
       >

@@ -1,14 +1,29 @@
 import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Login() {
-  const submit = (e) => {
-    e.preventDefault();
-    alert("Mock login — integrate auth API");
+  const [form, setForm] = useState({});
+  const { login } = useContext(AuthContext);
+  const nav = useNavigate();
+
+  const submit = async (e) => {
+      e.preventDefault();
+    try {
+      const res = await axios.post("/api/auth/login", form);
+      login(res.data);
+      nav(res.data.user.role === "seller" ? "/seller" : "/buyer");
+    } catch (err) {
+      alert(err.response?.data.error || "Login failed.");
+    }
   };
 
   return (
     <div className="bg-[#0b1220] min-h-screen flex items-center justify-center px-6 py-12 text-gray-100">
       <form
+        onChange={(e) => setForm({ ...form, [e.target.name]: e.target.value })}
         onSubmit={submit}
         className="w-full max-w-md bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-8 rounded-2xl border border-white/10 shadow-lg space-y-5"
       >
