@@ -19,6 +19,7 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, { cors: { origin: "*" } });
 
+app.use("/api/auth", authRoutes);
 app.use(cors());
 app.use(express.json());
 connectDB();
