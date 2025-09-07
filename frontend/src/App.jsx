@@ -7,6 +7,7 @@ import Seller from "./pages/Seller";
 import Buyer from "./pages/Buyer";
 import Analytics from "./pages/Analytics";
 import Chat from "./pages/Chat";
+import Features from "./pages/Feature";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/buyer" element={<Buyer />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/chat" element={<Chat />} />
+          <Route path="/features" element={<Features />} />
         </Routes>
       </main>
       <footer className="text-center text-sm text-gray-400 py-6">© WasteChain — Transform Waste Into Wealth</footer>
