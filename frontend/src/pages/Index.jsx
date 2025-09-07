@@ -1,20 +1,43 @@
 import HeroSection from "../components/HeroSection";
-import FeatureCards from "../components/FeatureCards";
+import FeatureCards from "../components/FeatureCard"; // ✅ ensure correct filename
 
 export default function Home() {
   return (
-    <div>
+    <div className="bg-[#0b1220] text-gray-100">
+      {/* Hero */}
       <HeroSection />
+
+      {/* Features */}
       <FeatureCards />
 
+      {/* How it Works Section */}
       <section className="max-w-7xl mx-auto px-6 py-16">
-        <div className="rounded-xl bg-gradient-to-r from-[#071024] to-[#0b1220] p-8 border border-white/5">
-          <h2 className="text-2xl font-bold mb-4">How it Works</h2>
-          <ol className="list-decimal ml-6 text-gray-300 space-y-2">
-            <li>Sellers upload image → AI predicts material & quantity.</li>
-            <li>Listing created and indexed with geo-location & quantity.</li>
-            <li>Buyers search and get ranked results (proximity + quantity match).</li>
-            <li>Chat + arrange logistics → Transaction tracked on platform.</li>
+        <div className="rounded-2xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-10 border border-white/10 shadow-lg">
+          <h2 className="text-3xl font-extrabold text-white mb-6">
+            How it Works
+          </h2>
+          <ol className="list-decimal ml-6 space-y-4 text-gray-300 text-lg">
+            <li>
+              <span className="text-green-400 font-semibold">Sellers</span>{" "}
+              upload an image → AI predicts material & quantity.
+            </li>
+            <li>
+              Listing created and indexed with{" "}
+              <span className="text-green-400 font-semibold">
+                geo-location & quantity
+              </span>
+              .
+            </li>
+            <li>
+              <span className="text-green-400 font-semibold">Buyers</span> search
+              and get ranked results (proximity + quantity match).
+            </li>
+            <li>
+              <span className="text-green-400 font-semibold">
+                Chat & logistics
+              </span>{" "}
+              → Transaction tracked on platform.
+            </li>
           </ol>
         </div>
       </section>
