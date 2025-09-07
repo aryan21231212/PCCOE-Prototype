@@ -1,16 +1,16 @@
 import HeroSection from "../components/HeroSection";
-import FeatureCards from "../components/FeatureCard"; // ✅ ensure correct filename
+import FeatureCards from "../components/FeatureCard"; 
 
 export default function Home() {
   return (
     <div className="bg-[#0b1220] text-gray-100">
-      {/* Hero */}
+
       <HeroSection />
 
-      {/* Features */}
+
       <FeatureCards />
 
-      {/* How it Works Section */}
+
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="rounded-2xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-10 border border-white/10 shadow-lg">
           <h2 className="text-3xl font-extrabold text-white mb-6">

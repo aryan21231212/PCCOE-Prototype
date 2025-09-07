@@ -13,10 +13,26 @@ export default function Buyer() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10 space-y-6">
-      <h2 className="text-2xl font-bold">Buyer Marketplace</h2>
-      <SearchFilter onSearch={handleSearch} />
-      <ListingsTable listings={demo} />
+    <div className="bg-[#0b1220] min-h-screen text-gray-100">
+      <div className="max-w-6xl mx-auto px-6 py-12 space-y-10">
+        {/* Title */}
+        <h2 className="text-3xl font-extrabold text-white">
+          Buyer Marketplace
+        </h2>
+
+        {/* Search */}
+        <div className="bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-6 rounded-2xl border border-white/10 shadow-lg">
+          <SearchFilter onSearch={handleSearch} />
+        </div>
+
+        {/* Listings */}
+        <div className="bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-6 rounded-2xl border border-white/10 shadow-lg">
+          <h3 className="text-xl font-semibold text-green-400 mb-4">
+            Available Listings
+          </h3>
+          <ListingsTable listings={demo} />
+        </div>
+      </div>
     </div>
   );
 }

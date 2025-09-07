@@ -7,17 +7,72 @@ export default function Register() {
   };
 
   return (
-    <div className="flex items-center justify-center py-12 px-6">
-      <form onSubmit={submit} className="w-full max-w-md bg-white/5 p-8 rounded space-y-3">
-        <h2 className="text-xl font-bold">Create an account</h2>
-        <input name="name" placeholder="Name" className="w-full p-2 rounded bg-transparent border border-white/10" />
-        <input name="email" placeholder="Email" className="w-full p-2 rounded bg-transparent border border-white/10" />
-        <select name="role" className="w-full p-2 rounded bg-transparent border border-white/10">
-          <option value="seller">Seller</option>
-          <option value="buyer">Buyer</option>
-        </select>
-        <button className="w-full bg-green-500 py-2 rounded">Register</button>
-        <div className="text-sm text-gray-300">Already have an account? <Link to="/login" className="text-green-300">Sign in</Link></div>
+    <div className="bg-[#0b1220] min-h-screen flex items-center justify-center px-6 py-12 text-gray-100">
+      <form
+        onSubmit={submit}
+        className="w-full max-w-md bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-8 rounded-2xl border border-white/10 shadow-lg space-y-5"
+      >
+        {/* Title */}
+        <h2 className="text-3xl font-extrabold text-white mb-4">
+          Create an Account
+        </h2>
+
+        {/* Name */}
+        <div>
+          <label className="block text-sm text-gray-400 mb-1">Name</label>
+          <input
+            name="name"
+            placeholder="Enter your name"
+            className="w-full p-3 rounded bg-transparent border border-white/10 focus:outline-none focus:border-green-400"
+          />
+        </div>
+
+        {/* Email */}
+        <div>
+          <label className="block text-sm text-gray-400 mb-1">Email</label>
+          <input
+            name="email"
+            placeholder="Enter your email"
+            type="email"
+            className="w-full p-3 rounded bg-transparent border border-white/10 focus:outline-none focus:border-green-400"
+          />
+        </div>
+
+        {/* Role */}
+        <div>
+          <label className="block text-sm text-gray-400 mb-1">Role</label>
+          <select
+            name="role"
+            className="w-full p-3 rounded bg-transparent border border-white/10 focus:outline-none focus:border-green-400"
+          >
+            <option value="seller">Seller</option>
+            <option value="buyer">Buyer</option>
+          </select>
+        </div>
+
+        {/* Password */}
+        <div>
+          <label className="block text-sm text-gray-400 mb-1">Password</label>
+          <input
+            name="password"
+            placeholder="Enter your password"
+            type="password"
+            className="w-full p-3 rounded bg-transparent border border-white/10 focus:outline-none focus:border-green-400"
+          />
+        </div>
+
+        {/* Button */}
+        <button className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-md font-semibold transition">
+          Register
+        </button>
+
+        {/* Footer */}
+        <div className="text-sm text-gray-400 text-center">
+          Already have an account?{" "}
+          <Link to="/login" className="text-green-400 hover:underline">
+            Sign in
+          </Link>
+        </div>
       </form>
     </div>
   );
