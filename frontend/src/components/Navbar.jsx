@@ -1,30 +1,68 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Navbar() {
+  const { user, logout } = useContext(AuthContext);
+
   return (
-    <header className="bg-[#0f1724] text-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-green-500 rounded-md flex items-center justify-center">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg>
-          </div>
-          <div>
-            <div className="font-bold text-lg">WasteChain</div>
-            <div className="text-xs text-green-300 -mt-1">Transform Waste Into Wealth</div>
-          </div>
+    <nav className="bg-[#0b1220] text-gray-100 px-6 py-4 flex items-center justify-between">
+      {/* Logo / Brand */}
+      <Link to="/" className="text-2xl font-bold text-green-400">
+        WasteChain
+      </Link>
+
+     
+
+      {/* Links */}
+      <div className="flex items-center gap-6">
+      <Link to="/" className="hover:text-gray-200">About</Link>
+        <Link to="/features" className="hover:text-green-400">
+          Features
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6">
-          <Link to="/" className="hover:text-gray-200">About</Link>
-          <Link to="/features" className="hover:text-gray-200">Features</Link>
-          <Link to="/how" className="hover:text-gray-200">How it Works</Link>
-          <Link to="/login" className="bg-white text-green-600 px-4 py-1 rounded-full font-medium hover:opacity-90">Sign In</Link>
-        </nav>
+        <Link to="/how" className="hover:text-gray-200">How it Works</Link>
 
-        <div className="md:hidden">
-          <Link to="/login" className="bg-white text-green-600 px-3 py-1 rounded-md text-sm">Sign In</Link>
-        </div>
+        {user ? (
+          <>
+            {/* Role-based dashboard link */}
+            {user.role === "seller" && (
+              <Link to="/seller" className="hover:text-green-400">
+                Dashboard
+              </Link>
+            )}
+            {user.role === "buyer" && (
+              <Link to="/buyer" className="hover:text-green-400">
+                Marketplace
+              </Link>
+            )}
+
+            <Link to="/analytics" className="hover:text-green-400">
+              Analytics
+            </Link>
+            <Link to="/chat" className="hover:text-green-400">
+              Chat
+            </Link>
+
+            {/* Logout button */}
+            <button
+              onClick={logout}
+              className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="hover:text-green-400">
+              Login
+            </Link>
+            <Link to="/register" className="hover:text-green-400">
+              Register
+            </Link>
+          </>
+        )}
       </div>
-    </header>
+    </nav>
   );
 }
