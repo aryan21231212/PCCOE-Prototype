@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
-      <div className="p-6">
+      <div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/features" element={<Features />} />

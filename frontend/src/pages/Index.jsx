@@ -3,7 +3,7 @@ import FeatureCards from "../components/FeatureCard";
 
 export default function Home() {
   return (
-    <div className="bg-[#0b1220] text-gray-100">
+    <div className="bg-[#0b1220]  text-gray-100">
 
       <HeroSection />
 
