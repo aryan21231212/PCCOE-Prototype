@@ -1,5 +1,6 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+
 import Home from "./pages/Index";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -9,24 +10,57 @@ import Analytics from "./pages/Analytics";
 import Chat from "./pages/Chat";
 import Features from "./pages/Feature";
 
+import ProtectedRoute from "./components/ProtectedRoute";
+
 function App() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-1">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/seller" element={<Seller />} />
-          <Route path="/buyer" element={<Buyer />} />
-          <Route path="/analytics" element={<Analytics />} />
-          <Route path="/chat" element={<Chat />} />
-          <Route path="/features" element={<Features />} />
-        </Routes>
-      </main>
-      <footer className="text-center text-sm text-gray-400 py-6">© WasteChain — Transform Waste Into Wealth</footer>
-    </div>
+    <Router>
+      <div className="min-h-screen bg-gray-100">
+        <Navbar />
+        <div className="p-6">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+
+            {/* Protected Routes */}
+            <Route
+              path="/seller"
+              element={
+                <ProtectedRoute role="seller">
+                  <Seller />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/buyer"
+              element={
+                <ProtectedRoute role="buyer">
+                  <Buyer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/analytics"
+              element={
+                <ProtectedRoute>
+                  <Analytics />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/chat"
+              element={
+                <ProtectedRoute>
+                  <Chat />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 
