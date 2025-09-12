@@ -1,1 +1,2 @@
-# connecting to AI
+# Fixed some bugs
+
